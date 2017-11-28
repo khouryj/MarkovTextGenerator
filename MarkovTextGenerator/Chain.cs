@@ -38,6 +38,18 @@ namespace MarkovTextGenerator
         {
             // TODO: Break sentence up into word pairs
             // TODO: Add each word pair to the chain
+            String[] arr = sentence.Split(' ');
+            for (int i = 0; i < arr.Length; i += 2)
+            {
+                if (arr[i+1] == null)
+                {
+                    this.AddPair(arr[i], "");
+                }
+                else
+                {
+                    this.AddPair(arr[i], arr[i + 1]);
+                }
+            }
         }
 
         // Adds a pair of words to the chain that will appear in order
