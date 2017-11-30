@@ -32,7 +32,8 @@ namespace MarkovTextGenerator
             string[] lines = File.ReadAllLines(@"Text\Minecraft.txt");
             foreach (String line in lines)
             {
-                chain.AddString(line.ToLower());
+                String line2 = new string(line.Where(c => !char.IsPunctuation(c)).ToArray());
+                chain.AddString(line2.ToLower());
             }
 
             // Now let's update all the probabilities with the new data
@@ -42,9 +43,20 @@ namespace MarkovTextGenerator
             Console.WriteLine("Done learning!  Now give me a word and I'll tell you what comes next.");
             Console.Write("> ");
 
-            String word = Console.ReadLine();
-            String nextWord = chain.GetNextWord(word);
-            Console.WriteLine("I predict the next word will be " + nextWord);
+            String nextWord = Console.ReadLine();
+            
+
+            while (true)
+            {
+                nextWord = chain.GetNextWord(nextWord);
+
+                if (nextWord == "")
+                    break;
+
+                Console.Write(nextWord + " ");
+
+            }
+
         }
     }
 }

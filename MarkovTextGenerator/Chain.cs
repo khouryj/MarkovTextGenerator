@@ -87,19 +87,15 @@ namespace MarkovTextGenerator
                 double choice = rand.NextDouble();
 
 
-                Console.WriteLine("I picked the number " + choice);
+                //Console.WriteLine("I picked the number " + choice);
 
                 foreach (Word w in words[word])
                 {
-                    Console.WriteLine(w);
-                    sum = w.Probability;
+                    //Console.WriteLine(w);
+                    sum += w.Probability;
                     
                     if (sum > choice)
                         return w.ToString();
-                    else
-                    {
-                        sum += GetNextWord(word).Probability;
-                    }
                 }
             }
 
