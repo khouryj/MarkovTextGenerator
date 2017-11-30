@@ -1,55 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarkovTextGenerator
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Chain chain = new Chain();
-
-            Console.WriteLine("Welcome to Marky Markov's Random Text Generator!");
-
-            /*
-            Console.WriteLine("Enter some text I can learn from (enter single ! to finish): ");
-
-            while (true)
-            {
-
-                Console.Write("> ");
-
-                String line = Console.ReadLine();
-                if (line == "!")
-                    break;
-
-                chain.AddString(line);  // Let the chain process this string
-            }*/
-            string[] lines = File.ReadAllLines(@"Text\Minecraft.txt");
-            foreach (String line in lines)
-            {
-                chain.AddString(line.ToLower());
-            }
-
-            // Now let's update all the probabilities with the new data
-            chain.UpdateProbabilities();
-
-            // Okay now for the fun part
-            Console.WriteLine("Done learning!  Now give me a word and I'll tell you what comes next.");
-            Console.Write("> ");
-
-            String word = Console.ReadLine();
-            String nextWord = chain.GetNextWord(word);
-            Console.WriteLine("I predict the next word will be " + nextWord);
-        }
-    }
-}
-/*
-Diamond Sword to Major Steve
+﻿Diamond Sword to Major Steve
 Diamond Sword to Major Steve
 Take your speed potion and put your diamond helmet on
 Diamond Sword to Major Steve
@@ -76,7 +25,6 @@ Can I fight 'till I decease? (x3)
 Can I fight all these creepers here's a way out
 I see some grass
 The mine is getting lighter, and I'm almost getting through.
-
 Uh, open up the potions, pop!
 It's my mine come on, mine it up!
 Hear a hiss behind the door and the night begins
@@ -87,7 +35,6 @@ Sometimes you forget torches
 And you gotta bring your pickaxe
 Yeah, you know where we goin'
 Sometimes you forget torches
-
 Welcome to my mine, we are mining diamonds
 We ain't gonna strip mine
 We don't have to fight mobs
@@ -96,7 +43,6 @@ Play that noteblock nicely
 Show me all those emeralds
 We don't gotta dodge lava
 Welcome to my mine, welcome to my mine
-
 When it comes and you know that you wanna stay
 Block dirt, let's start mining those real things
 Keep those swords in our hands, and open up those potions
@@ -105,13 +51,11 @@ Sometimes you forget torches
 And you gotta bring a pickaxe
 Yeah, we know where we going
 Sometimes you forget torches
-
 Welcome to my mine, we are mining diamonds
 We don't gotta strip mine, we don't have to fight mobs
 Welcome to my mine,play that noteblock nicely
 Show me all those emeralds,we don't gotta dodge lava...
 Welcome to my mine, welcome to my...
-
 Welcome to my strip mine, the mine, the cave, the crack
 My mine is your mine, treating it right
 Sorry if my mine don't have the gold
@@ -120,7 +64,6 @@ Oh, my goodness, what is that?
 Azul brillante, guapo, so we're going to mine that
 I think I know what that is
 O.M.G it's diamonds!
-
 Welcome to my mine, we will mine diamonds
 We don't gotta strip mine
 We don't gotta fight mobs
@@ -129,7 +72,6 @@ Show me all those emeralds
 We don't gotta dodge lava
 Welcome to my mine, welcome to my mine, welcome to my mine
 Hah, yeah!
-
 I been in the cave
 I been minin' them ores
 I feel like I'm outta my game
@@ -139,7 +81,6 @@ I been in the cave
 I been minin' them ores
 I feel like I'm outta my game
 It feels like my diamonds ain't mined
-
 I don't wanna mine iron
 I don't wanna mine iron
 I just wanna get diamonds today
@@ -148,7 +89,6 @@ I don't wanna mine iron
 I don't wanna mine iron
 I just wanna get diamonds
 Now lemme go diamond
-
 All these other ores I'm minin'
 Now they think they're diamonds
 I been prayin' for some diamonds to save me
@@ -165,7 +105,6 @@ Where you been?
 Where you at?
 What are your coordinates?
 Every ore is precious but nobody cares about iron
-
 I been in the cave
 I been minin' them ores
 I feel like I'm outta my game
@@ -175,7 +114,6 @@ I been in the cave
 I been minin' them ores
 I feel like I'm outta my game
 It feels like my diamonds ain't mined
-
 I want you to mine iron
 I want you to mine iron
 You don't gotta mine today
@@ -184,7 +122,6 @@ I want you to mine iron
 I want you to mine iron
 You don't gotta mine
 Now let me mine some ores
-
 It's the first ore when you're pick's been mining on them rocks
 And the torches on the wall when it's dark
 Pick to- pick with the miner
@@ -199,7 +136,6 @@ I'm just trying to mine an ore
 Mining is hard
 It can be so hard, but you gotta mine right now
 You got every ore to mine right now
-
 I been in the cave
 I been minin' them ores
 I feel like I'm outta my game
@@ -209,7 +145,6 @@ I been in the cave
 I been minin' them ores
 I feel like I'm outta my game
 It feels like my diamonds ain't mined
-
 I finally wanna mine iron
 I finally wanna mine iron
 I don't wanna craft today
@@ -218,7 +153,6 @@ I finally wanna mine iron
 I finally wanna mine iron
 I don't wanna craft
 I don't wanna craft
-
 Creepers don't hurt the same I know
 The cave I travel feels so dark
 But I'm mining my ores 'till my pick gives out
@@ -229,4 +163,3 @@ I don't even wanna fall in lava anymore
 Steve don't wanna
 Steve don't wanna
 Steve don't wanna fall in lava anymore
-*/

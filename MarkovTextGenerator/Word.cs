@@ -17,6 +17,11 @@ namespace MarkovTextGenerator
             this.word = word;
         }
 
+        public String Value
+        {
+            get { return this.word;  }
+        }
+
         public override string ToString()
         {
             return this.word;

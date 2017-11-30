@@ -41,17 +41,11 @@ namespace MarkovTextGenerator
             // TODO: Break sentence up into word pairs
             // TODO: Add each word pair to the chain
             String[] arr = sentence.Split(' ');
-            for (int i = 0; i < arr.Length; i += 2)
+            for (int i = 0; i < arr.Length-1; i++)
             {
-                if (arr[i+1] == null)
-                {
-                    this.AddPair(arr[i], "");
-                }
-                else
-                {
-                    this.AddPair(arr[i], arr[i + 1]);
-                }
+                AddPair(arr[i], arr[i + 1]);
             }
+            AddPair(arr[arr.Length - 1], "");
         }
 
         // Adds a pair of words to the chain that will appear in order
@@ -87,11 +81,26 @@ namespace MarkovTextGenerator
         // Given a word, randomly chooses the next word
         public String GetNextWord (String word)
         {
+            double sum = 0;
             if (words.ContainsKey(word))
             {
-                double choice = 1.0 / (double)rand.Next(100000);
+                double choice = rand.NextDouble();
 
-                Console.WriteLine("I picked the number " + choice); 
+
+                Console.WriteLine("I picked the number " + choice);
+
+                foreach (Word w in words[word])
+                {
+                    Console.WriteLine(w);
+                    sum = w.Probability;
+                    
+                    if (sum > choice)
+                        return w.ToString();
+                    else
+                    {
+                        sum += GetNextWord(word).Probability;
+                    }
+                }
             }
 
             return "idkbbq";
