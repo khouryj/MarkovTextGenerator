@@ -9,12 +9,14 @@ namespace MarkovTextGenerator
     class Chain
     {
         public Dictionary<String, List<Word>> words;
+        public List<String> starting;
         private Dictionary<String, int> sums;
         private Random rand;
 
         public Chain ()
         {
             words = new Dictionary<String, List<Word>>();
+            starting = new List<string>();
             sums = new Dictionary<string, int>();
             rand = new Random(System.Environment.TickCount);
         }
@@ -23,7 +25,7 @@ namespace MarkovTextGenerator
         // a separate list of actual sentence starting words and randomly choose from that
         public String GetRandomStartingWord ()
         {
-            return words.Keys.ElementAt(rand.Next() % words.Keys.Count);
+            return starting.ElementAt(rand.Next() % starting.Count);
         }
 
         // Adds a sentence to the chain
@@ -43,17 +45,22 @@ namespace MarkovTextGenerator
             String[] arr = sentence.Split(' ');
             for (int i = 0; i < arr.Length-1; i++)
             {
-                AddPair(arr[i], arr[i + 1]);
+                AddPair(arr[i], arr[i + 1], i == 0);
             }
             AddPair(arr[arr.Length - 1], "");
         }
 
         // Adds a pair of words to the chain that will appear in order
-        public void AddPair(String word, String word2)
+        public void AddPair(String word, String word2, bool start = false)
         {
             if (!words.ContainsKey(word))
             {
+
                 sums.Add(word, 1);
+
+                if (start)
+                    starting.Add(word);
+
                 words.Add(word, new List<Word>());
                 words[word].Add(new Word(word2));
             }
