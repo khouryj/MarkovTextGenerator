@@ -41,12 +41,12 @@ namespace MarkovTextGenerator
             chain.UpdateProbabilities();
 
             // Okay now for the fun part
-            Console.WriteLine("Done learning!  Now type in 10 words seperated by spaces, and I'll generate a minecraft parody.");
-            Console.Write("> ");
+            //Console.WriteLine("Done learning!  Now type in 10 words seperated by spaces, and I'll generate a minecraft parody.");
+            //Console.Write("> ");
 
-            string[] startWords = Console.ReadLine().Split(' ');
-            Console.WriteLine();
-            for (int i = 0; i < startWords.Length; i++)
+            //string[] startWords = Console.ReadLine().Split(' ');
+            //Console.WriteLine();
+            /*for (int i = 0; i < startWords.Length; i++)
             {
                 string nextWord = startWords[i];
                 string New = nextWord;
@@ -64,7 +64,7 @@ namespace MarkovTextGenerator
                 }
                 Console.WriteLine();
             }
-
+*/
 
             Dictionary<String, List<String>> lyrics = new Dictionary<string, List<string>>();
 
